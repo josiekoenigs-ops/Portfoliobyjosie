@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Interior Design Portfolio</title>
+  <meta name="description" content="An interior design thesis portfolio you can ride through.">
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Keyboard/screen-reader users can jump straight to the list of projects -->
+  <a href="#" id="skip-link" class="skip-link">Skip the game: view all projects as a list</a>
+
+  <!-- ================= GAME STAGE (canvas + HUD) ================= -->
+  <div id="stage">
+    <canvas id="game" tabindex="0" aria-label="Portfolio game. Ride right to visit each project."></canvas>
+
+    <div id="hud" class="hidden" aria-hidden="false">
+      <div class="hud-map" aria-hidden="true">
+        <div class="hud-track" id="hud-track">
+          <div class="hud-fill" id="hud-fill"></div>
+          <div class="hud-rider" id="hud-rider"></div>
+        </div>
+      </div>
+      <div class="hud-coins" title="Coins collected: each one reveals a fun fact">
+        <span class="coin-icon" aria-hidden="true"></span>
+        <span class="pixel" id="hud-coins">0/0</span>
+      </div>
+      <div class="hud-buttons">
+        <button id="btn-list" class="sprite-btn" data-sprite="menu" data-size="44" aria-label="All projects (list view)" title="All projects"></button>
+        <button id="btn-music" class="pbtn icon-only" aria-label="Music off" title="Music on/off"></button>
+        <button id="btn-mute" class="pbtn icon-only" aria-label="Mute sound effects" title="Sound effects on/off"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TOUCH CONTROLS (phones/tablets) ================= -->
+  <div id="touch-controls" class="hidden">
+    <div class="tc-group">
+      <button class="tc-btn" data-control="left" aria-label="Ride back">
+        <svg viewBox="0 0 8 8" shape-rendering="crispEdges"><path d="M5 1h1v6H5V6H4V5H3V3h1V2h1z"/></svg>
+      </button>
+      <button class="tc-btn" data-control="right" aria-label="Ride forward">
+        <svg viewBox="0 0 8 8" shape-rendering="crispEdges"><path d="M2 1h1v1h1v1h1v2H4v1H3v1H2z"/></svg>
+      </button>
+    </div>
+    <div class="tc-group">
+      <button class="tc-btn tc-enter hidden" id="tc-enter" data-control="interact" aria-label="Enter stop">ENTER</button>
+      <button class="tc-btn" data-control="jump" aria-label="Jump">
+        <svg viewBox="0 0 8 8" shape-rendering="crispEdges"><path d="M3 2h2v1h1v1h1v1H1V4h1V3h1z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= LOADING SCREEN ================= -->
+  <div id="loading" class="screen">
+    <p class="pixel">LOADING...</p>
+    <div class="load-bar"><div id="load-fill"></div></div>
+  </div>
+
+  <!-- ================= TITLE SCREEN ================= -->
+  <div id="title" class="screen hidden">
+    <div class="title-card">
+      <h1 class="pixel title-name" id="title-name">YOUR NAME</h1>
+      <p class="pixel title-tag" id="title-tag">Interior Design Portfolio</p>
+
+      <button id="btn-start" class="start-btn">
+        <span class="pixel blink" id="start-label">PRESS SPACE TO START</span>
+      </button>
+
+      <div class="controls-help pixel" id="controls-keys">
+        <div><kbd>&larr;</kbd><kbd>&rarr;</kbd> / <kbd>A</kbd><kbd>D</kbd><span>RIDE</span></div>
+        <div><kbd>SPACE</kbd> / <kbd>&uarr;</kbd> / <kbd>W</kbd><span>JUMP</span></div>
+        <div><kbd>E</kbd> / <kbd>ENTER</kbd><span>ENTER A STOP</span></div>
+        <div><kbd>ESC</kbd><span>CLOSE</span></div>
+      </div>
+      <div class="controls-help pixel hidden" id="controls-touch">
+        <div>Use the buttons at the bottom to ride and jump.</div>
+        <div>Tap the bubble over a building to enter.</div>
+        <div class="rotate-hint">Tip: turn your phone sideways for a bigger view.</div>
+      </div>
+
+      <button class="link-btn" id="title-skip">Skip the game &rarr; view projects as a list</button>
+    </div>
+  </div>
+
+  <!-- ================= POP-UP (all dialogs reuse this box) ================= -->
+  <div id="modal" class="modal hidden">
+    <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+      <button class="sprite-btn dialog-close" id="dialog-close" data-sprite="close" data-size="44" aria-label="Close (Esc)" title="Close (Esc)"></button>
+      <div class="dialog-content" id="dialog-content"></div>
+    </div>
+  </div>
+
+  <!-- Game scripts — order matters: settings & data first, game last -->
+  <script src="js/config.js"></script>
+  <script src="data/projects.js"></script>
+  <script src="js/assets.js"></script>
+  <script src="js/input.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/coins.js"></script>
+  <script src="js/level.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
