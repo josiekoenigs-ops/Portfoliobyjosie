@@ -30,6 +30,9 @@ const Input = {
     // Let people type in the contact form without moving the rider.
     const tag = (e.target && e.target.tagName) || '';
     if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+    // While a pop-up or the resume is open the game is frozen: let arrow keys / Space
+    // scroll the page and press buttons as normal.
+    if (typeof Game !== 'undefined' && Game.state === 'popup') return;
 
     const code = e.code;
     const is = name => this.KEYS[name].includes(code);

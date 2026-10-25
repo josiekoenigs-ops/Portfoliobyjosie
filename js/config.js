@@ -21,6 +21,17 @@ const CONFIG = {
      (mailto:) addressed to OWNER_EMAIL instead.                     */
   FORM_ENDPOINT: 'https://formspree.io/f/xaeqkayn',
 
+  /* ---------- Resume (flies in and unfolds at the post office) ----------
+     image: your resume as one tall image (white background is fine —
+            it blends into the old-paper look automatically)
+     pdf:   optional — adds a "Download PDF" link under the buttons ('' to hide) */
+  RESUME: {
+    image: 'assets/resume/resume.webp',
+    pdf:   'assets/resume/JKoenigs-Resume.pdf',
+    alt:   'Resume of Jocelyn (Josie) Koenigs, Junior Interior Designer: profile, experience, education and skills.',
+    autoOpen: true,          // true = opens by itself when you ride up to the post office
+  },
+
   /* ---------- Rendering ---------- */
   VIEW_HEIGHT: 720,          // the game world is always 720 "units" tall
   MIN_ASPECT: 4 / 3,         // narrowest view (phones in portrait get letterboxed)
@@ -125,7 +136,7 @@ const CONFIG = {
      Leave '' to use the built-in retro synth sounds.
      Or point at your own short files, e.g. 'assets/sounds/blip.mp3'. */
   SOUNDS: {
-    blip: '', open: '', jump: '', land: '', finish: '', send: '', coin: '',
+    blip: '', open: '', jump: '', land: '', finish: '', send: '', coin: '', paper: '',
   },
 
   /* ---------- Background music ------------------------------------

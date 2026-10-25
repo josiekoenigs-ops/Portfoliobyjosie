@@ -41,6 +41,7 @@ js/input.js           keyboard + touch buttons
 js/audio.js           retro sound effects + background music (synthesized, or your own files)
 js/particles.js       dust, confetti, coin sparkles
 js/coins.js           collectible coins + the fun-fact banner in the sky
+js/resume.js          the resume that flies in and unfolds at the post office
 js/assets.js          image preloader (+ auto-trims transparent borders)
 assets/               all images and sounds (see section 5)
 assets/originals/     untouched copies of art I edited (rider photo, Healing Hive image)
@@ -104,6 +105,21 @@ Each `{ ... }` block is one stop, in riding order:
 
 ### Coins + fun facts
 `FUN_FACTS` (also in `data/projects.js`) is a list of sentences. The game places **one coin per fact** along the track, and collecting a coin pops that fact up in the sky for 7 seconds. The coin counter in the HUD shows how many you've found. Add, remove or reorder facts freely and the coins update automatically. Coins are placed for you: some float over jumps, some sit at bike height (just ride through), and some are up high (jump for them). All facts also appear in the list view under "Fun facts about me".
+
+### Resume at the finish
+After the rider crosses the finish line and reaches the post office, a folded letter flies onto the screen, unfolds, and shows your resume on old, wrinkled paper. The bottom of the sheet has **Mail me a letter** and **Back to the track** buttons, plus a **Download PDF** link. Visitors can reopen it by pressing E at the post office, or with **View my résumé** in the list view.
+
+Settings are in `RESUME` in `js/config.js`:
+- `image`: the resume as one tall image (`assets/resume/resume.webp`). Its white background blends into the paper automatically.
+- `pdf`: the file for the Download link (`assets/resume/JKoenigs-Resume.pdf`). Set it to `''` to hide the link.
+- `autoOpen`: set to `false` so it only opens when visitors press E at the post office.
+
+**Updating your resume:**
+1. Replace `JKoenigs-Resume.pdf` with your new PDF.
+2. Export the resume as one tall PNG or JPG, about 1600px wide (in Canva or Word, export each page as an image and stack them).
+3. Save it as `assets/resume/resume.webp`, or point `RESUME.image` at your new file.
+
+The paper look (colour, stains, creases, scorched edges) is in the "RESUME" section at the bottom of `css/style.css`. The crumpled shading and ragged edges are generated in `js/resume.js`.
 
 ### Jumps
 Five dirt-jump types are defined at the top of `js/level.js`: **rollers**, **kicker**, **tabletop**, **double** and **big**. `LEVEL.jumpPattern` in `config.js` sets the order they appear in; a type too long for a gap is skipped. Copy one of the shapes in `JUMPS` to invent your own.

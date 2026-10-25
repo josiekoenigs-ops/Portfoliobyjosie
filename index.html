@@ -8,7 +8,7 @@
   <link rel="icon" href="data:,">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Nunito:wght@400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -97,6 +97,16 @@
     </div>
   </div>
 
+  <!-- ================= RESUME (flies in + unfolds at the post office) ================= -->
+  <div id="resume" class="resume hidden" role="dialog" aria-modal="true" aria-label="Resume">
+    <div class="resume-scroll" id="resume-scroll">
+      <div class="resume-stage" id="resume-stage">
+        <div class="resume-paper" id="resume-paper"></div>
+        <div class="resume-fold" id="resume-fold" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- Game scripts — order matters: settings & data first, game last -->
   <script src="js/config.js"></script>
   <script src="data/projects.js"></script>
@@ -108,6 +118,7 @@
   <script src="js/level.js"></script>
   <script src="js/player.js"></script>
   <script src="js/ui.js"></script>
+  <script src="js/resume.js"></script>
   <script src="js/game.js"></script>
 </body>
 </html>

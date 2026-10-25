@@ -249,6 +249,7 @@ const UI = {
           <button class="g-arrow g-next" aria-label="Next image"><svg viewBox="0 0 8 8" shape-rendering="crispEdges"><path d="M2 1h1v1h1v1h1v2H4v1H3v1H2z"/></svg></button>` : ''}
         </div>
         <div class="gallery-meta"><span id="g-caption"></span><span class="pixel" id="g-count"></span></div>
+        <p class="gallery-credit" id="g-credit"></p>
       </div>` : ''}
       <div class="dialog-text">${paragraphs}</div>
       ${links ? `<div class="dialog-links">${links}</div>` : ''}
@@ -258,7 +259,7 @@ const UI = {
       </div>`, 'project');
 
     if (images.length) {
-      this.gallery = { images, index: 0 };
+      this.gallery = { images, index: 0, credit: p.credit || '' };
       this.showGalleryImage();
       const frame = this.$('dialog-content').querySelector('.gallery-frame');
       frame.querySelector('.g-prev')?.addEventListener('click', () => this.galleryStep(-1));
@@ -290,30 +291,13 @@ const UI = {
     img.alt = item.caption || '';
     this.$('g-caption').textContent = item.caption || '';
     this.$('g-count').textContent = g.images.length > 1 ? `${g.index + 1}/${g.images.length}` : '';
+    // Credit line: the image's own credit, or the project's.
+    const credit = item.credit != null ? item.credit : g.credit;
+    this.$('g-credit').textContent = credit || '';
+    this.$('g-credit').hidden = !credit;
   },
 
-  /* ---------- POST OFFICE ---------- */
-  openPostOffice() {
-    this.openModal(`
-      <header class="dialog-header center">
-        <h2 id="dialog-title" class="pixel">${esc(POST_OFFICE.title)}</h2>
-      </header>
-      <div class="dialog-text center"><p class="lead">${esc(POST_OFFICE.message)}</p></div>
-      <div class="yes-no">
-        <button class="choice" id="act-yes" autofocus>
-          <span class="sprite" data-sprite="yes" data-size="72" aria-hidden="true"></span><span class="pixel">YES</span>
-        </button>
-        <button class="choice" id="act-no">
-          <span class="sprite" data-sprite="no" data-size="72" aria-hidden="true"></span><span class="pixel">NO</span>
-        </button>
-      </div>
-      <div class="dialog-actions center">
-        <button class="pbtn" id="act-again">&#8635; Ride again</button>
-      </div>`, 'post');
-    this.$('act-yes').addEventListener('click', () => { Sound.play('open'); this.openLetter(); });
-    this.$('act-no').addEventListener('click', () => this.closeModal());
-    this.$('act-again').addEventListener('click', () => Game.rideAgain());
-  },
+  /* (The post office opens the resume — see js/resume.js.) */
 
   /* ---------- LETTER (contact form) ---------- */
   openLetter() {
@@ -437,12 +421,20 @@ const UI = {
       <h3 class="facts-heading pixel">Fun facts about me</h3>
       <ul class="facts-list">${FUN_FACTS.map(f => `<li>${esc(f)}</li>`).join('')}</ul>` : ''}
       <div class="dialog-actions">
+        <button class="pbtn" id="act-resume">&#128196; View my r&eacute;sum&eacute;</button>
         <button class="pbtn" id="act-letter">&#9993; Write me a letter</button>
         <button class="pbtn primary" id="act-back" autofocus>${this.titleVisible ? 'Play the game' : 'Back to the track'}</button>
       </div>`, 'list');
     this.$('dialog-content').querySelectorAll('.card').forEach(c =>
       c.addEventListener('click', () => { Sound.play('open'); this.openProject(PROJECTS[+c.dataset.i], true); }));
     this.$('act-letter').addEventListener('click', () => this.openLetter());
+    this.$('act-resume').addEventListener('click', () => {
+      // Close the list quietly (no state change), then fly the resume in.
+      this.$('modal').classList.add('hidden');
+      this.modalOpen = false;
+      this.gallery = null;
+      Resume.openResume();
+    });
     this.$('act-back').addEventListener('click', () => {
       const fromTitle = this.titleVisible;
       this.closeModal();

@@ -71,6 +71,7 @@ const Sound = {
 
   SYNTH: {
     blip(t)   { this.tone(t, { freq: 880, dur: 0.06, vol: 0.05 }); },
+    paper(t)  { this.noise(t, { dur: 0.22, vol: 0.05, filter: 3800 }); this.noise(t, { dur: 0.16, vol: 0.035, filter: 2200, delay: 0.14 }); },
     coin(t)   { this.tone(t, { freq: 988, dur: 0.07, vol: 0.06 }); this.tone(t, { freq: 1319, dur: 0.32, delay: 0.07, vol: 0.06 }); },
     open(t)   { this.tone(t, { freq: 523, dur: 0.08 }); this.tone(t, { freq: 784, dur: 0.12, delay: 0.08 }); },
     jump(t)   { this.tone(t, { freq: 300, to: 700, dur: 0.15, vol: 0.06 }); },

@@ -36,6 +36,7 @@ const Game = {
     Sound.init();
     Music.init();
     UI.init();
+    Resume.init();
     window.addEventListener('resize', () => this.resize());
     this.resize();
 
@@ -134,6 +135,12 @@ const Game = {
       Sound.play('finish');
     }
     this.finishTimer = Math.max(0, this.finishTimer - dt);
+
+    // Past the finish line and up to the post office → the resume flies in (once per ride).
+    if (CONFIG.RESUME.autoOpen && this.finished && !Resume.shownThisRide && p.x >= L.postOffice.x - 40) {
+      Resume.shownThisRide = true;
+      Resume.openResume();
+    }
 
     UI.updateHUD(p.x / L.width);
   },
@@ -245,7 +252,8 @@ const Game = {
     Input.reset();
     Sound.play('open');
     if (stop.type === 'postOffice') {
-      UI.openPostOffice();
+      Resume.shownThisRide = true;
+      Resume.openResume();
     } else {
       stop.visited = true;
       UI.markVisited(stop.index);
@@ -277,9 +285,13 @@ const Game = {
     this.level.stops.forEach(s => (s.visited = false));
     UI.resetVisited();
     Coins.reset();
+    Resume.close({ quiet: true });
+    Resume.shownThisRide = false;
     UI.closeModal();
+    Music.duck(false);
+    Input.reset();
     if (UI.titleVisible) this.start();
-    else this.state = 'playing';
+    else { this.state = 'playing'; this.canvas.focus(); }
   },
 
   /* Tapping the prompt bubble (or the building itself) enters the stop. */

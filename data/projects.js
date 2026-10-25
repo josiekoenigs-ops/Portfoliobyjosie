@@ -9,6 +9,8 @@
      title       big heading in the pop-up and over the stop
      subtitle    small line under the title (course code, year ...) — '' to hide
      concept     concept statement, shown as a quote under the title — '' to hide
+     credit      optional small credit line under the gallery (e.g. who did the renderings)
+                 — a single image can also have its own: { src, caption, credit }
      x           position along the track, or null to auto-space evenly
      stopImage   the building/landmark drawn in the level (transparent PNG/WebP)
      stopScale   size of that building (1.05 = 105% of the image's pixel size; keep all the same for true-to-life scale)
@@ -26,6 +28,7 @@ const PROJECTS = [
     title: 'The Healing Hive',
     subtitle: '',
     concept: 'To heal, grow, learn and flourish together.',
+    credit: 'Renderings completed by Jenna Waller',
     x: null,
     stopImage: 'assets/stops/project-1-cabins.webp',
     stopScale: 1.05,
@@ -160,7 +163,7 @@ const FUN_FACTS = [
 /* The final stop after the checkered flag. */
 const POST_OFFICE = {
   title: 'You made it!',
-  message: 'Thanks for riding through my portfolio. Would you like to mail me a letter?',
+  message: 'Thanks for riding through my portfolio.',   // handwritten note at the bottom of the resume
   letterGreeting: 'Dear ' + CONFIG.OWNER_NAME + ',',
   sentMessage: 'Your letter is on its way. I\'ll write back soon!',
 };
