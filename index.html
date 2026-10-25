@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Nunito:wght@400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=2">
 </head>
 <body>
 
@@ -107,18 +107,22 @@
     </div>
   </div>
 
-  <!-- Game scripts — order matters: settings & data first, game last -->
-  <script src="js/config.js"></script>
-  <script src="data/projects.js"></script>
-  <script src="js/assets.js"></script>
-  <script src="js/input.js"></script>
-  <script src="js/audio.js"></script>
-  <script src="js/particles.js"></script>
-  <script src="js/coins.js"></script>
-  <script src="js/level.js"></script>
-  <script src="js/player.js"></script>
-  <script src="js/ui.js"></script>
-  <script src="js/resume.js"></script>
-  <script src="js/game.js"></script>
+  <!-- Game scripts — order matters: settings & data first, game last.
+       "?v=2" is a version tag: after you change any .js/.css file, change every ?v=2
+       to ?v=3 (then 4, 5 ...) so visitors' browsers download the new files instead of old saved copies.
+       In VS Code: Ctrl+H, find  ?v=2  replace with  ?v=3 , Replace All. -->
+
+  <script src="js/config.js?v=2"></script>
+  <script src="data/projects.js?v=2"></script>
+  <script src="js/assets.js?v=2"></script>
+  <script src="js/input.js?v=2"></script>
+  <script src="js/audio.js?v=2"></script>
+  <script src="js/particles.js?v=2"></script>
+  <script src="js/coins.js?v=2"></script>
+  <script src="js/level.js?v=2"></script>
+  <script src="js/player.js?v=2"></script>
+  <script src="js/ui.js?v=2"></script>
+  <script src="js/resume.js?v=2"></script>
+  <script src="js/game.js?v=2"></script>
 </body>
 </html>

@@ -21,6 +21,7 @@ Plain HTML + CSS + JavaScript (HTML5 Canvas). No build step, no framework.
 4. Go to **Settings → Pages**. Under *Branch*, pick **main** and **/ (root)**, then click **Save**.
 5. Wait a minute or two, then refresh the page. Your link appears at the top: `https://YOUR-USERNAME.github.io/portfolio/`.
 6. To update the site later, upload the changed files the same way. Same names overwrite the old ones.
+7. **Bump the version tag every time you change code or text.** Browsers keep old copies of `.js` and `.css` files, so visitors (and you) might not see your changes. In `index.html`, every file link ends in `?v=2`. Change them all to `?v=3`, then `?v=4` next time, and so on. In VS Code: **Ctrl+H**, find `?v=2`, replace with `?v=3`, **Replace All**. Then upload `index.html` along with your changed files. (Images don't need this; give a changed image a new file name instead.)
 
 > File names on GitHub Pages are **case-sensitive**: `Project-1.PNG` and `project-1.png` are different files there, even though they're the same on Windows. Keep paths in `projects.js` matching the real file names exactly.
 
